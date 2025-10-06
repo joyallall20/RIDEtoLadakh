@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Hotel from '../../assets/Destinations/Hotels.jpg';
+import Hotel from '../../../public/videos/Destinations/Hotels.jpg';
 import Footer from '../../Componants/Layout/Footer'
 import HotelCard from './HotelCard';
 import { useNavigate } from 'react-router-dom';

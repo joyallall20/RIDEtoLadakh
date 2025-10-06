@@ -4,9 +4,8 @@ import { connectDb } from './config/DB.js';
 import cors from 'cors';
 import userRoutes from './src/Routes/userRoutes.js';
 import BookHotel from './src/Routes/BookHotel.js'
-import BookbikeRoutes from '../Backend/src/Routes/BookbikeRoutes.js'
 import paymentRoutes from '../Backend/src/Routes/paymentRoutes.js'
-import BikepaymentRoutes from '../Backend/src/Routes/BikepaymentRoutes.js'
+
 dotenv.config();
 import emailSend from '../Backend/src/Routes/emailSend.js'
 
@@ -14,19 +13,28 @@ const App = express();
 const Port = process.env.PORT || 8000;
 
 // Middleware
-App.use(express.json());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://rid-eto-ladakh.vercel.app"
+];
+
 App.use(cors({
-  origin: "http://localhost:5173",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
+
 // Routes
 App.use("/api/user", userRoutes);
-App.use("/api/bike", BookbikeRoutes);
 App.use("/api/hotels", BookHotel )
 App.use("/api/payment", paymentRoutes);
-App.use("/api/payment/bike",BikepaymentRoutes);
 App.use("/api/email", emailSend)
 
 // Default route

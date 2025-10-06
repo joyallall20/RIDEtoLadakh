@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const AxiosInstence = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL, // uses Vercel env or local
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 50000,
   headers: { "Content-Type": "application/json" },
 });

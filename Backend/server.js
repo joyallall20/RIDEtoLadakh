@@ -1,13 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { connectDb } from '../../../Backend/config/DB.js';
+import { connectDb } from './config/DB.js';
 import cors from 'cors';
-import userRoutes from '../../../Backend/src/Routes/userRoutes.js';
-import BookHotel from '../../../Backend/src/Routes/BookHotel.js'
-import paymentRoutes from '../../../Backend/src/Routes/paymentRoutes.js'
+import userRoutes from './src/Routes/userRoutes.js';
+import BookHotel from './src/Routes/BookHotel.js'
+import paymentRoutes from './src/Routes/paymentRoutes.js'
 
 dotenv.config();
-import emailSend from '../../../Backend/src/Routes/emailSend.js'
+import emailSend from './src/Routes/emailSend.js'
 
 const App = express();
 const Port = process.env.PORT || 8000;

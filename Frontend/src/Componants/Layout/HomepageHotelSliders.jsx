@@ -7,4 +7,4 @@ const HomepageSliders = () => {
   )
 }
 
-export default HomepageSliders
+export default HomepageSliders  

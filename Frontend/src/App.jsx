@@ -4,10 +4,6 @@ import Homepage from "../src/Pages/Homepage";
 import SignUp from "./Pages/Auth/SignUp";
 import Login from "./Pages/Auth/Login";
 import Hotels from "./Pages/Bookings/Hotels";
-import Bikerental from "./Pages/BIkeRent/bikerental"; 
-
-import BikeBooking from "./Pages/BIkeRent/BikeBooking";
-
 import MyBooking from "./Pages/MyBooking";
 
 // CONTEXT PROVIDERS

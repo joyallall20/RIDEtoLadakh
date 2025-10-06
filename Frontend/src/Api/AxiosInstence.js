@@ -1,18 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const AxiosInstence = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: import.meta.env.VITE_API_BASE_URL, // uses Vercel env or local
   timeout: 50000,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  headers: { "Content-Type": "application/json" },
 });
 
 AxiosInstence.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
   },
@@ -24,7 +22,7 @@ AxiosInstence.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       console.log("Unauthorized request. Redirecting to login...");
-      window.location.href = '/login';
+      window.location.href = "/login";
     }
     return Promise.reject(error);
   }

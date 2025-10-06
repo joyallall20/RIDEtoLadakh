@@ -1,56 +1,58 @@
-import { getAllBookings, getBookingById, updateBooking } from "../../../../Backend/src/Controllers/BookHotelController";
-
+import { AxiosInstence } from "./AxiosInstence";
 
 export const ApiPath = {
-  Auth:{
-    Signup: "/user/signup",
-    Login: "/user/login",
+  Auth: {
+    Signup: (data) => AxiosInstence.post("/user/signup", data),
+    Login: (data) => AxiosInstence.post("/user/login", data),
   },
 
-  Destinations:{
-    createDestinations: "/destinations",
-    deleteDestintion: "/destinations/id",
-    updateDestination:"/destinations/:id",
-    getAllDestination: "/destinations",
-    getDestinationById:"/destinations/id"
+  Destinations: {
+    createDestinations: (data) => AxiosInstence.post("/destinations", data),
+    deleteDestintion: (id) => AxiosInstence.delete(`/destinations/${id}`),
+    updateDestination: (id, data) => AxiosInstence.put(`/destinations/${id}`, data),
+    getAllDestination: () => AxiosInstence.get("/destinations"),
+    getDestinationById: (id) => AxiosInstence.get(`/destinations/${id}`),
   },
-  Hotels:{
-    createHotel: "/hotels",
-    deleteHotel: "/hotels",
-    updateHotel: "/hotels/id",
-    getAllHotel: "/hotels",
-    getAllHotelbyId: "/hotels/id"
+
+  Hotels: {
+    createHotel: (data) => AxiosInstence.post("/hotels", data),
+    deleteHotel: (id) => AxiosInstence.delete(`/hotels/${id}`),
+    updateHotel: (id, data) => AxiosInstence.put(`/hotels/${id}`, data),
+    getAllHotel: () => AxiosInstence.get("/hotels"),
+    getAllHotelbyId: (id) => AxiosInstence.get(`/hotels/${id}`),
   },
-  TripRoutes:{
-    createTrip: "/trips",
-    deleteTrip: "/trips/:id",
-    updateTrip: "/trips/:id",
-    getAllTrip: "/trips",
-    getAllTripsById: "trips/:id"
+
+  TripRoutes: {
+    createTrip: (data) => AxiosInstence.post("/trips", data),
+    deleteTrip: (id) => AxiosInstence.delete(`/trips/${id}`),
+    updateTrip: (id, data) => AxiosInstence.put(`/trips/${id}`, data),
+    getAllTrip: () => AxiosInstence.get("/trips"),
+    getAllTripsById: (id) => AxiosInstence.get(`/trips/${id}`),
   },
+
   BookbikeRoutes: {
-  createBooking: "/bike",
-  getAllBookings: "/bike",
-  getBookingById: "/bike/:id",
-  updateBooking: "/bike/:id",
-  deleteBooking: "/bike/:id",
-},
-BookHotel:{
-  createhotelbooking : '/hotels/booking',
-  getAllBookings : '/hotels/booking',
-  getBookingById: '/hotels/booking/:id',
-  updateBooking: '/hotels/booking/:id',
-  deleteBooking: '/hotels/booking/:id'
-
-},
- paymentRoutes: {
-    createOrder: "/payment/create-order",  // backend endpoint for Razorpay order
-    verifyPayment: "/payment/verify-payment",      // optional, if you implement payment verification
+    createBooking: (data) => AxiosInstence.post("/bike", data),
+    getAllBookings: () => AxiosInstence.get("/bike"),
+    getBookingById: (id) => AxiosInstence.get(`/bike/${id}`),
+    updateBooking: (id, data) => AxiosInstence.put(`/bike/${id}`, data),
+    deleteBooking: (id) => AxiosInstence.delete(`/bike/${id}`),
   },
-  BikepaymentRoutes:{
-     createOrder: "/payment/create-order/bike",  // backend endpoint for Razorpay order
-    verifyPayment: "/payment/confirm-booking/bike",   
-  }
 
+  BookHotel: {
+    createhotelbooking: (data) => AxiosInstence.post("/hotels/booking", data),
+    getAllBookings: () => AxiosInstence.get("/hotels/booking"),
+    getBookingById: (id) => AxiosInstence.get(`/hotels/booking/${id}`),
+    updateBooking: (id, data) => AxiosInstence.put(`/hotels/booking/${id}`, data),
+    deleteBooking: (id) => AxiosInstence.delete(`/hotels/booking/${id}`),
+  },
 
-}
+ paymentRoutes: {
+  createOrder: (data) => AxiosInstence.post("/payment/create-order", data),  // <-- pass data here
+  verifyPayment: (data) => AxiosInstence.post("/payment/verify-payment", data),
+},
+
+  BikepaymentRoutes: {
+    createOrder: (data) => AxiosInstence.post("/payment/create-order/bike", data),
+    verifyPayment: (data) => AxiosInstence.post("/payment/confirm-booking/bike", data),
+  },
+};
